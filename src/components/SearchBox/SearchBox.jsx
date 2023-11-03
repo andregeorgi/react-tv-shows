@@ -66,7 +66,7 @@ function SearchBox({ onSearch }) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            TV Shows
+            TV Shows App
           </Typography>
           <Search>
             <SearchIconWrapper>

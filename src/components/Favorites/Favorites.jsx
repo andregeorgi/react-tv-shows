@@ -17,16 +17,16 @@ function Favorites() {
 
   return (
     <div className="favorites-container">
-      <h2>My Favorites</h2>
+      <h2>Favorites</h2>
       <div className="favorites-columns">
         {columns.map((column, index) => (
           <div key={index} className="favorites-column">
             {column.map((show) => (
               <div key={show.id} className="favorite-item">
                 <ListItem disablePadding>
-                  <ListItemButton onClick={() => removeFavorite(show.id)}>
+                  <ListItemButton>
                     <ListItemIcon>
-                      <StarIcon />
+                      <StarIcon onClick={() => removeFavorite(show.id)} />
                     </ListItemIcon>
                     <ListItemText primary={show.name} />
                   </ListItemButton>
