@@ -32,13 +32,13 @@ function EpisodesList({ seasonId }) {
   return (
     <div className="episodes-container">
       {episodes.map((episode) => (
-        <Card key={episode.id} sx={{ maxWidth: 500 }}>
+        <Card key={episode.id} sx={{ maxWidth: 333 }}>
           {episode.image && (
-            <CardMedia sx={{ height: 150 }} image={episode.image.original} />
+            <CardMedia sx={{ height: 200 }} image={episode.image.original} />
           )}
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              Episode: {episode.name}
+              Episode {episode.number}: {episode.name}
             </Typography>
             <Typography variant="body2">
               {removeHtmlTags(episode.summary)}

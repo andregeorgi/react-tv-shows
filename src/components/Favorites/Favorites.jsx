@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { ShowsContext } from "../../context/ShowsContext";
-import List from "@mui/material/List";
+import { yellow } from "@mui/material/colors";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import StarIcon from "@mui/icons-material/Star";
+import { Tooltip } from "@mui/material";
 
 function Favorites() {
   const { favorites, removeFavorite } = useContext(ShowsContext);
@@ -17,7 +18,7 @@ function Favorites() {
 
   return (
     <div className="favorites-container">
-      <h2>Favorites</h2>
+      <h2>Favorites ⭐️</h2>
       <div className="favorites-columns">
         {columns.map((column, index) => (
           <div key={index} className="favorites-column">
@@ -26,7 +27,13 @@ function Favorites() {
                 <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon>
-                      <StarIcon onClick={() => removeFavorite(show.id)} />
+                      <Tooltip title="Remove from favorites">
+                        <StarIcon
+                          sx={{ color: yellow[600] }}
+                          fontSize="medium"
+                          onClick={() => removeFavorite(show.id)}
+                        />
+                      </Tooltip>
                     </ListItemIcon>
                     <ListItemText primary={show.name} />
                   </ListItemButton>

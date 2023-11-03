@@ -22,13 +22,13 @@ function SeasonList({ showId }) {
           key={season.id}
           style={{ textDecoration: "none" }}
         >
-          <Card key={season.id} sx={{ maxWidth: 345 }}>
+          <Card key={season.id} sx={{ minWidth: 350 }}>
             {season.image && (
               <CardMedia sx={{ height: 150 }} image={season.image.original} />
             )}
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                Season number: {season.number}
+                Season {season.number}
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 Episodes: {season.episodeOrder}

@@ -1,6 +1,3 @@
-.App {
-  text-align: center;
-}
 .favorites-container {
   max-width: 100%;
   overflow-x: auto;
@@ -82,4 +79,20 @@
 
 .episode-header h1 {
   margin-left: 45px;
+}
+
+.pagination {
+  padding: 20px;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+.pagination button {
+  margin: 0 20px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  font-weight: bold;
 }
