@@ -96,3 +96,7 @@
 .pagination button.active {
   font-weight: bold;
 }
+
+.css-130e4d5-MuiInputBase-root .MuiInputBase-input {
+  padding-left: 20px !important;
+}

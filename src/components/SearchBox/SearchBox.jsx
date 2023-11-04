@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
+import { grey } from "@mui/material/colors";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -17,20 +18,6 @@ const Search = styled("div")(({ theme }) => ({
   },
   marginLeft: 0,
   width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
-  },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -53,13 +40,6 @@ function SearchBox({ onSearch }) {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          ></IconButton>
           <Typography
             variant="h6"
             noWrap
@@ -68,10 +48,18 @@ function SearchBox({ onSearch }) {
           >
             TV Shows App
           </Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
+          <Search sx={{ width: 230 }}>
+            <IconButton
+              sx={{
+                height: "100%",
+                paddingRight: 0,
+              }}
+              onClick={(e) => handleSubmit(e)}
+            >
+              <SearchIcon
+                sx={{ color: grey[50], paddingLeft: 0, marginLeft: 0 }}
+              />
+            </IconButton>
             <StyledInputBase
               placeholder="Search TV shows..."
               value={searchTerm}

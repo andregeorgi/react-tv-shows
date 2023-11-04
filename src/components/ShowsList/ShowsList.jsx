@@ -13,24 +13,27 @@ import { Tooltip } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function ShowsList() {
+function ShowsList({ searchedShows }) {
   const { addFavorite } = useContext(ShowsContext);
-  const savedPage = Number(localStorage.getItem("currentPage")) || 0;
+
   const [shows, setShows] = useState([]);
+  const savedPage = Number(localStorage.getItem("currentPage")) || 0;
   const [page, setPage] = useState(savedPage);
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
-    fetch(`https://api.tvmaze.com/shows?page=${page}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.length === 0) {
-          setHasMore(false);
-        } else {
-          setShows(data);
-        }
-      });
-  }, [page]);
+    if (!searchedShows || searchedShows.length === 0) {
+      fetch(`https://api.tvmaze.com/shows?page=${page}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.length === 0) {
+            setHasMore(false);
+          } else {
+            setShows(data);
+          }
+        });
+    }
+  }, [page, searchedShows]);
 
   useEffect(() => {
     localStorage.setItem("currentPage", page);
@@ -46,6 +49,9 @@ function ShowsList() {
     setPage((prevPage) => Math.max(prevPage - 1, 0));
   };
 
+  const showsToDisplay =
+    searchedShows && searchedShows.length > 0 ? searchedShows : shows;
+
   return (
     <div>
       <ToastContainer />
@@ -54,7 +60,7 @@ function ShowsList() {
       </div>
 
       <div className="shows-cards">
-        {shows.map((show) => (
+        {showsToDisplay.map((show) => (
           <Card key={show.id} sx={{ minWidth: 333 }} className="card">
             {show.image && (
               <CardHeader
@@ -64,6 +70,7 @@ function ShowsList() {
                     height={40}
                     width={40}
                     className="rounded-image"
+                    alt={show.name}
                   ></img>
                 }
                 action={
