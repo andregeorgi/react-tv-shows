@@ -33,8 +33,14 @@ function EpisodesList({ seasonId }) {
     <div className="episodes-container">
       {episodes.map((episode) => (
         <Card key={episode.id} sx={{ maxWidth: 333 }}>
-          {episode.image && (
+          {episode.image ? (
             <CardMedia sx={{ height: 200 }} image={episode.image.original} />
+          ) : (
+            <CardMedia
+              component="img"
+              sx={{ height: 200 }}
+              image="/no_data.jpeg"
+            />
           )}
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">

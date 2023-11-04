@@ -10,6 +10,8 @@ import StarIcon from "@mui/icons-material/Star";
 import Button from "@mui/material/Button";
 import { yellow } from "@mui/material/colors";
 import { Tooltip } from "@mui/material";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ShowsList() {
   const { addFavorite } = useContext(ShowsContext);
@@ -30,8 +32,6 @@ function ShowsList() {
       });
   }, [page]);
 
-  console.log(shows.length);
-
   useEffect(() => {
     localStorage.setItem("currentPage", page);
   }, [page]);
@@ -48,6 +48,7 @@ function ShowsList() {
 
   return (
     <div>
+      <ToastContainer />
       <div className="shows-container">
         <h2>TV Shows</h2>
       </div>
@@ -71,6 +72,20 @@ function ShowsList() {
                       aria-label="add to favorites"
                       onClick={() => {
                         addFavorite(show);
+                        toast.info(
+                          <div>
+                            <div>{`${show.name} added to favorites!`}</div>
+                          </div>,
+                          {
+                            position: "top-right",
+                            autoClose: 2000,
+                            hideProgressBar: true,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                          }
+                        );
                       }}
                     >
                       <StarIcon sx={{ color: yellow[600] }} fontSize="medium" />

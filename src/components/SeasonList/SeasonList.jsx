@@ -23,8 +23,14 @@ function SeasonList({ showId }) {
           style={{ textDecoration: "none" }}
         >
           <Card key={season.id} sx={{ minWidth: 350 }}>
-            {season.image && (
+            {season.image ? (
               <CardMedia sx={{ height: 150 }} image={season.image.original} />
+            ) : (
+              <CardMedia
+                component="img"
+                sx={{ height: 150 }}
+                image="/no_data.jpeg"
+              />
             )}
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">

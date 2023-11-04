@@ -5,10 +5,11 @@
 }
 
 .favorites-container h2 {
-  margin-left: 29px;
+  margin-left: 106px;
 }
 .favorites-columns {
   display: flex;
+  margin-left: 78px;
 }
 
 .favorites-column {
@@ -31,7 +32,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: left;
+  justify-content: center;
   align-items: stretch;
   gap: 20px;
   margin-left: 29px;
@@ -44,7 +45,7 @@
 }
 
 .shows-container h2 {
-  margin-left: 48px;
+  margin-left: 125px;
 }
 
 .rounded-image {
@@ -52,18 +53,17 @@
 }
 
 .season-container {
-  padding: 20px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: stretch;
   gap: 20px;
-  margin-left: 29px;
+  margin: 0 30px 0 90px;
 }
 
 .season-header h1 {
-  margin-left: 45px;
+  margin-left: 90px;
 }
 
 .episodes-container {
@@ -74,11 +74,11 @@
   justify-content: flex-start;
   align-items: stretch;
   gap: 20px;
-  margin-left: 29px;
+  margin: 0 30px 0 90px;
 }
 
 .episode-header h1 {
-  margin-left: 45px;
+  margin-left: 106px;
 }
 
 .pagination {

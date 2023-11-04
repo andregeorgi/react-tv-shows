@@ -7,6 +7,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import StarIcon from "@mui/icons-material/Star";
 import { Tooltip } from "@mui/material";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Favorites() {
   const { favorites, removeFavorite } = useContext(ShowsContext);
@@ -18,7 +20,9 @@ function Favorites() {
 
   return (
     <div className="favorites-container">
+      <ToastContainer />
       <h2>Favorites ⭐️</h2>
+
       <div className="favorites-columns">
         {columns.map((column, index) => (
           <div key={index} className="favorites-column">
@@ -26,12 +30,34 @@ function Favorites() {
               <div key={show.id} className="favorite-item">
                 <ListItem disablePadding>
                   <ListItemButton>
-                    <ListItemIcon>
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 34,
+                      }}
+                    >
                       <Tooltip title="Remove from favorites">
                         <StarIcon
-                          sx={{ color: yellow[600] }}
+                          sx={{
+                            color: yellow[600],
+                          }}
                           fontSize="medium"
-                          onClick={() => removeFavorite(show.id)}
+                          onClick={() => {
+                            removeFavorite(show.id);
+                            toast.info(
+                              <div>
+                                <div>{`${show.name} has been removed from favorites!`}</div>
+                              </div>,
+                              {
+                                position: "top-right",
+                                autoClose: 3000,
+                                hideProgressBar: true,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                              }
+                            );
+                          }}
                         />
                       </Tooltip>
                     </ListItemIcon>

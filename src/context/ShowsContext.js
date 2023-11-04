@@ -8,9 +8,12 @@ export const ShowsProvider = ({ children }) => {
   );
 
   const addFavorite = (show) => {
-    const updatedFavorites = [...favorites, show];
-    setFavorites(updatedFavorites);
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    const showExists = favorites.find((favorite) => favorite.id === show.id);
+    if (!showExists) {
+      const updatedFavorites = [...favorites, show];
+      setFavorites(updatedFavorites);
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    }
   };
 
   const removeFavorite = (id) => {
