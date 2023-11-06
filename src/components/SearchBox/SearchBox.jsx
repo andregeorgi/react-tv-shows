@@ -63,7 +63,18 @@ function SearchBox({ onSearch }) {
             <StyledInputBase
               placeholder="Search TV shows..."
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                if (e.target.value.trim() === "") {
+                  onSearch("");
+                }
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  handleSubmit(e);
+                }
+              }}
             />
           </Search>
         </Toolbar>

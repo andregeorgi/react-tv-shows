@@ -21,7 +21,7 @@ function Favorites() {
   return (
     <div className="favorites-container">
       <ToastContainer />
-      <h2>Favorites ⭐️</h2>
+      {favorites.length > 0 && <h2>Favorites ⭐️</h2>}
 
       <div className="favorites-columns">
         {columns.map((column, index) => (

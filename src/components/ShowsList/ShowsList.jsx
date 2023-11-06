@@ -120,16 +120,18 @@ function ShowsList({ searchedShows }) {
           </Card>
         ))}
       </div>
-      <div className="pagination">
-        <Button variant="contained" onClick={prevPage} disabled={page === 0}>
-          Previous
-        </Button>
+      {searchedShows.length === 0 && (
+        <div className="pagination">
+          <Button variant="contained" onClick={prevPage} disabled={page === 0}>
+            Previous
+          </Button>
 
-        <span>{page + 1}</span>
-        <Button variant="contained" onClick={nextPage} disabled={!hasMore}>
-          Next
-        </Button>
-      </div>
+          <span>{page + 1}</span>
+          <Button variant="contained" onClick={nextPage} disabled={!hasMore}>
+            Next
+          </Button>
+        </div>
+      )}
     </div>
   );
 }
