@@ -78,8 +78,9 @@
 }
 
 .episode-dropdown {
-  margin-left: 106px;
-  max-width: 220px;
+  margin-right: 115px;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .episode-header h1 {

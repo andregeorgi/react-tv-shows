@@ -40,7 +40,7 @@ function EpisodesPage() {
     <div className="episode-header">
       <h1>Episodes of season: {season.number}</h1>
       <div className="episode-dropdown">
-        <Box>
+        <Box sx={{ width: 200 }}>
           <FormControl fullWidth>
             <InputLabel>Time zone</InputLabel>
             <Select
