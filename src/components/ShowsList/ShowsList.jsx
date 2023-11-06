@@ -20,7 +20,13 @@ function ShowsList({ searchedShows }) {
   const savedPage = Number(localStorage.getItem("currentPage")) || 0;
   const [page, setPage] = useState(savedPage);
   const [hasMore, setHasMore] = useState(true);
-  const [addedShows, setAddedShows] = useState({});
+
+  const loadInitialState = () => {
+    const savedShows = localStorage.getItem("addedShows");
+    return savedShows ? JSON.parse(savedShows) : {};
+  };
+
+  const [addedShows, setAddedShows] = useState(loadInitialState);
 
   useEffect(() => {
     if (!searchedShows || searchedShows.length === 0) {
@@ -39,6 +45,10 @@ function ShowsList({ searchedShows }) {
   useEffect(() => {
     localStorage.setItem("currentPage", page);
   }, [page]);
+
+  useEffect(() => {
+    localStorage.setItem("addedShows", JSON.stringify(addedShows));
+  }, [addedShows]);
 
   const handleAddFavorite = (show) => {
     addFavorite(show);
