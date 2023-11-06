@@ -8,6 +8,7 @@ import ListItemText from "@mui/material/ListItemText";
 import StarIcon from "@mui/icons-material/Star";
 import { Tooltip } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
+import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 function Favorites() {
@@ -29,40 +30,47 @@ function Favorites() {
             {column.map((show) => (
               <div key={show.id} className="favorite-item">
                 <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon
-                      sx={{
-                        minWidth: 34,
-                      }}
-                    >
-                      <Tooltip title="Remove from favorites">
-                        <StarIcon
-                          sx={{
-                            color: yellow[600],
-                          }}
-                          fontSize="medium"
-                          onClick={() => {
-                            removeFavorite(show.id);
-                            toast.info(
-                              <div>
-                                <div>{`${show.name} has been removed from favorites!`}</div>
-                              </div>,
-                              {
-                                position: "top-right",
-                                autoClose: 3000,
-                                hideProgressBar: true,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                              }
-                            );
-                          }}
-                        />
-                      </Tooltip>
-                    </ListItemIcon>
-                    <ListItemText primary={show.name} />
-                  </ListItemButton>
+                  <Link
+                    to={`/seasons/${show.id}`}
+                    key={show.id}
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    <ListItemButton>
+                      <ListItemIcon
+                        sx={{
+                          minWidth: 34,
+                        }}
+                      >
+                        <Tooltip title="Remove from favorites">
+                          <StarIcon
+                            sx={{
+                              color: yellow[600],
+                            }}
+                            fontSize="medium"
+                            onClick={(event) => {
+                              event.preventDefault();
+                              removeFavorite(show.id);
+                              toast.info(
+                                <div>
+                                  <div>{`${show.name} has been removed from favorites!`}</div>
+                                </div>,
+                                {
+                                  position: "top-right",
+                                  autoClose: 3000,
+                                  hideProgressBar: true,
+                                  closeOnClick: true,
+                                  pauseOnHover: true,
+                                  draggable: true,
+                                  progress: undefined,
+                                }
+                              );
+                            }}
+                          />
+                        </Tooltip>
+                      </ListItemIcon>
+                      <ListItemText primary={show.name} />
+                    </ListItemButton>
+                  </Link>
                 </ListItem>
               </div>
             ))}

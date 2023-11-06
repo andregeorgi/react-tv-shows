@@ -20,6 +20,7 @@ function ShowsList({ searchedShows }) {
   const savedPage = Number(localStorage.getItem("currentPage")) || 0;
   const [page, setPage] = useState(savedPage);
   const [hasMore, setHasMore] = useState(true);
+  const [addedShows, setAddedShows] = useState({});
 
   useEffect(() => {
     if (!searchedShows || searchedShows.length === 0) {
@@ -38,6 +39,28 @@ function ShowsList({ searchedShows }) {
   useEffect(() => {
     localStorage.setItem("currentPage", page);
   }, [page]);
+
+  const handleAddFavorite = (show) => {
+    addFavorite(show);
+    setAddedShows((prevAddedShows) => ({
+      ...prevAddedShows,
+      [show.id]: true,
+    }));
+    toast.info(
+      <div>
+        <div>{`${show.name} added to favorites!`}</div>
+      </div>,
+      {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
+  };
 
   const nextPage = () => {
     if (hasMore) {
@@ -77,25 +100,14 @@ function ShowsList({ searchedShows }) {
                   <Tooltip title="Add to favorites">
                     <IconButton
                       aria-label="add to favorites"
-                      onClick={() => {
-                        addFavorite(show);
-                        toast.info(
-                          <div>
-                            <div>{`${show.name} added to favorites!`}</div>
-                          </div>,
-                          {
-                            position: "top-right",
-                            autoClose: 2000,
-                            hideProgressBar: true,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                          }
-                        );
-                      }}
+                      onClick={() => handleAddFavorite(show)}
                     >
-                      <StarIcon sx={{ color: yellow[600] }} fontSize="medium" />
+                      <StarIcon
+                        fontSize="medium"
+                        sx={{
+                          color: addedShows[show.id] ? yellow[600] : "inherit",
+                        }}
+                      />
                     </IconButton>
                   </Tooltip>
                 }
