@@ -3,8 +3,9 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import moment from "moment-timezone";
 
-function EpisodesList({ seasonId }) {
+function EpisodesList({ seasonId, timeZone }) {
   const [episodes, setEpisodes] = useState([]);
 
   function removeHtmlTags(str) {
@@ -13,14 +14,7 @@ function EpisodesList({ seasonId }) {
   }
 
   function formatAirstamp(airstamp) {
-    const date = new Date(airstamp);
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const day = date.getDate().toString().padStart(2, "0");
-    const hours = date.getHours().toString().padStart(2, "0");
-    const minutes = date.getMinutes().toString().padStart(2, "0");
-
-    return `${year}/${month}/${day} ${hours}:${minutes}`;
+    return moment(airstamp).tz(timeZone).format("YYYY/MM/DD HH:mm");
   }
 
   useEffect(() => {
