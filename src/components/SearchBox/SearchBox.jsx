@@ -48,7 +48,7 @@ function SearchBox({ onSearch }) {
           >
             TV Shows App
           </Typography>
-          <Search sx={{ width: 256 }}>
+          <Search sx={{ width: auto }}>
             <IconButton
               sx={{
                 height: "100%",
