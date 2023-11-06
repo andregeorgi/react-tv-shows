@@ -7,6 +7,8 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
+import { useNavigate } from "react-router-dom";
+
 import { grey } from "@mui/material/colors";
 
 const Search = styled("div")(({ theme }) => ({
@@ -30,6 +32,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 function SearchBox({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,10 +47,25 @@ function SearchBox({ onSearch }) {
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            sx={{ display: { xs: "none", sm: "block" }, minWidth: 200 }}
           >
-            TV Shows App
+            TV Shows
           </Typography>
+
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", sm: "block" },
+              minWidth: 400,
+              cursor: "pointer",
+            }}
+            onClick={() => navigate("/")}
+          >
+            Home
+          </Typography>
+
           <Search sx={{ width: "auto" }}>
             <IconButton
               sx={{

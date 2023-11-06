@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SeasonList from "../../components/SeasonList/SeasonList";
+import SearchBox from "../../components/SearchBox/SearchBox";
 import { useParams } from "react-router-dom";
 
 function SeasonsPage() {
@@ -19,6 +20,7 @@ function SeasonsPage() {
 
   return (
     <div className="season-header">
+      <SearchBox />
       <h1>Seasons of {show.name}</h1>
       <SeasonList showId={showId} />
     </div>

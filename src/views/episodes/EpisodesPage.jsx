@@ -7,6 +7,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import moment from "moment-timezone";
+import SearchBox from "../../components/SearchBox/SearchBox";
 
 function EpisodesPage() {
   const { seasonId } = useParams();
@@ -38,6 +39,7 @@ function EpisodesPage() {
 
   return (
     <div className="episode-header">
+      <SearchBox />
       <h1>Episodes of season: {season.number}</h1>
       <div className="episode-dropdown">
         <Box sx={{ width: 200 }}>
